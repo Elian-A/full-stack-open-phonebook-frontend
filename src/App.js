@@ -6,7 +6,20 @@ const App = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    let alreadyExist = false;
+
+    persons.forEach((person) => {
+      if (person.name === newName) {
+        alert(`${newName} is already added to phonebook`);
+        alreadyExist = true;
+      }
+    });
+
+    if (alreadyExist) return;
+
     setPersons([...persons, { name: newName }]);
+    setNewName("");
   };
 
   const handleNameChange = (evt) => {
