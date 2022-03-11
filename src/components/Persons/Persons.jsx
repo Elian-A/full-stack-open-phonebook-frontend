@@ -1,19 +1,30 @@
 import React from "react";
 
-const Persons = ({ persons, filter }) => {
-  const filteredPersons = persons.filter((person) =>
-    person.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
-  );
+const Persons = ({ persons, phoneFilter, deletePersonPhone }) => {
+  const filteredPersons = persons.filter(({ name }) => {
+    name = name.toLowerCase();
+    return name.includes(phoneFilter.toLowerCase());
+  });
   return (
     <div>
       <h2>Numbers</h2>
       <ul>
-        {!filter
+        {!phoneFilter
           ? persons.map((person) => (
-              <li key={person.name}>{`${person.name}  ${person.number}`}</li>
+              <div key={person.id}>
+                <li>{`${person.name}  ${person.number}`}</li>
+                <button onClick={() => deletePersonPhone(person.id)}>
+                  delete
+                </button>
+              </div>
             ))
           : filteredPersons.map((person) => (
-              <li key={person.name}>{`${person.name}  ${person.number}`}</li>
+              <div key={person.id}>
+                <li>{`${person.name}  ${person.number}`}</li>
+                <button onClick={() => deletePersonPhone(person.id)}>
+                  delete
+                </button>
+              </div>
             ))}
       </ul>
     </div>

@@ -1,13 +1,13 @@
 import React from "react";
 
-const Filter = ({ filter, setFilter }) => {
+const Filter = ({ phoneFilter, setPhoneFilter }) => {
   const handleFilterChange = (evt) => {
-    setFilter(evt.target.value);
+    setPhoneFilter(evt.target.value);
   };
   return (
     <div>
       <h2>Filter</h2>
-      filter: <input onChange={handleFilterChange} value={filter} />
+      filter: <input onChange={handleFilterChange} value={phoneFilter} />
     </div>
   );
 };
