@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 
 const PersonForm = ({
@@ -7,7 +6,6 @@ const PersonForm = ({
   newNumber,
   setNewNumber,
   persons,
-  setPersons,
   createPerson,
 }) => {
   const handleSubmit = (evt) => {
@@ -29,9 +27,6 @@ const PersonForm = ({
       number: newNumber,
     };
     createPerson(newPerson);
-    setPersons([...persons, newPerson]);
-    setNewName("");
-    setNewNumber("");
   };
 
   //form events
