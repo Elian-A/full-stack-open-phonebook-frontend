@@ -1,8 +1,11 @@
 import { useState } from "react";
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [persons, setPersons] = useState([
+    { name: "Arto Hellas", number: "00-00-0000000" },
+  ]);
   const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -18,12 +21,20 @@ const App = () => {
 
     if (alreadyExist) return;
 
-    setPersons([...persons, { name: newName }]);
+    const newPerson = {
+      name: newName,
+      number: newNumber,
+    };
+    setPersons([...persons, newPerson]);
     setNewName("");
+    setNewNumber("");
   };
 
   const handleNameChange = (evt) => {
     setNewName(evt.target.value);
+  };
+  const handleNumberChange = (evt) => {
+    setNewNumber(evt.target.value);
   };
 
   return (
@@ -34,13 +45,18 @@ const App = () => {
           name: <input onChange={handleNameChange} value={newName} />
         </div>
         <div>
+          number: <input onChange={handleNumberChange} value={newNumber} />
+        </div>
+        <div>
           <button type="submit">add</button>
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map((person) => (
-        <p key={person.name}>{person.name}</p>
-      ))}
+      <ul>
+        {persons.map((person) => (
+          <li key={person.name}>{`${person.name}  ${person.number}`}</li>
+        ))}
+      </ul>
     </div>
   );
 };
