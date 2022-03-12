@@ -21,9 +21,8 @@ const App = () => {
   };
 
   //acá hice la confirmacion en la funcion Hacer luego la confirmacion antes de llamar a la funcion
-  const deletePersonPhone = (id) => {
-    const deletedPerson = persons.filter((person) => person.id === id);
-    const confirmation = window.confirm(`Delete ${deletedPerson[0].name}`);
+  const deletePersonPhone = (id, personName) => {
+    const confirmation = window.confirm(`Delete ${personName}`);
     if (!confirmation) return;
     deletePerson(id).then(() => {
       setPersons(persons.filter((person) => person.id !== id));

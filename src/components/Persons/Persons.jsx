@@ -13,7 +13,9 @@ const Persons = ({ persons, phoneFilter, deletePersonPhone }) => {
           ? persons.map((person) => (
               <div key={person.id}>
                 <li>{`${person.name}  ${person.number}`}</li>
-                <button onClick={() => deletePersonPhone(person.id)}>
+                <button
+                  onClick={() => deletePersonPhone(person.id, person.name)}
+                >
                   delete
                 </button>
               </div>
@@ -21,7 +23,9 @@ const Persons = ({ persons, phoneFilter, deletePersonPhone }) => {
           : filteredPersons.map((person) => (
               <div key={person.id}>
                 <li>{`${person.name}  ${person.number}`}</li>
-                <button onClick={() => deletePersonPhone(person.id)}>
+                <button
+                  onClick={() => deletePersonPhone(person.id, person.name)}
+                >
                   delete
                 </button>
               </div>
