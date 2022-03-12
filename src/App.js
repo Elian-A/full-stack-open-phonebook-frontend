@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Filter, Persons, PersonForm } from "./components";
-import { getAll, create, deletePerson } from "./services/personServices";
+import { getAll, create, deletePerson, edit } from "./services/personServices";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -20,6 +20,7 @@ const App = () => {
     });
   };
 
+  //acá hice la confirmacion en la funcion Hacer luego la confirmacion antes de llamar a la funcion
   const deletePersonPhone = (id) => {
     const deletedPerson = persons.filter((person) => person.id === id);
     const confirmation = window.confirm(`Delete ${deletedPerson[0].name}`);
@@ -29,6 +30,12 @@ const App = () => {
     });
   };
 
+  //acá hice la confirmacion antes de llamar a la funcion
+  const changePhoneNumber = (id, changedPhoneNumber) => {
+    edit(id, changedPhoneNumber).then((data) => {
+      setPersons(persons.map((person) => (person.id === id ? data : person)));
+    });
+  };
   return (
     <div>
       <PersonForm
@@ -38,6 +45,7 @@ const App = () => {
         setNewNumber={setNewNumber}
         persons={persons}
         createPerson={createPerson}
+        changePhoneNumber={changePhoneNumber}
       />
       <Filter phoneFilter={phoneFilter} setPhoneFilter={setPhoneFilter} />
       <Persons

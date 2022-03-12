@@ -7,6 +7,7 @@ const PersonForm = ({
   setNewNumber,
   persons,
   createPerson,
+  changePhoneNumber,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -14,11 +15,29 @@ const PersonForm = ({
     //validate fields
     let alreadyExist = false;
     persons.forEach((person) => {
-      if (person.name === newName) {
+      if (person.name === newName && person.number === newNumber) {
         alert(`${newName} is already added to phonebook`);
         alreadyExist = true;
       }
+      if (person.name === newName && person.number !== newNumber) {
+        const confirmation = window.confirm(
+          `${person.name} is already added to phonebook, replace the old number with a new one?`
+        );
+        if (!confirmation) {
+          alreadyExist = true;
+          return;
+        }
+        const changedPhoneNumber = {
+          name: newName,
+          number: newNumber,
+        };
+        changePhoneNumber(person.id, changedPhoneNumber);
+        alreadyExist = true;
+      }
     });
+
+    setNewName("");
+    setNewNumber("");
     if (alreadyExist) return;
 
     // post verb and state refresh

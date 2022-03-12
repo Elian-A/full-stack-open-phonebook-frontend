@@ -15,3 +15,8 @@ export const deletePerson = (id) => {
   const request = axios.delete(`${url}/${id}`);
   return request.then((res) => res.data);
 };
+
+export const edit = (id, newPerson) => {
+  const request = axios.put(`${url}/${id}`, newPerson);
+  return request.then((res) => res.data);
+};
