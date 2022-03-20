@@ -1,5 +1,6 @@
 import axios from "axios";
 const url = "http://localhost:3001/api/persons";
+/* https://fathomless-scrubland-33652.herokuapp.com/api/persons */
 
 export const getAll = () => {
   const request = axios.get(url);
