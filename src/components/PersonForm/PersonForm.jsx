@@ -61,10 +61,20 @@ const PersonForm = ({
       <h2>Phonebook</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          name: <input onChange={handleNameChange} value={newName} />
+          name:{" "}
+          <input
+            onChange={handleNameChange}
+            value={newName}
+            placeholder="Arto Hellas"
+          />
         </div>
         <div>
-          number: <input onChange={handleNumberChange} value={newNumber} />
+          number:{" "}
+          <input
+            onChange={handleNumberChange}
+            value={newNumber}
+            placeholder="0000-000000"
+          />
         </div>
         <div>
           <button type="submit">add</button>
