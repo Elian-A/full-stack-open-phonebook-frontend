@@ -40,7 +40,7 @@ const App = () => {
       .then((data) => {
         setPersons(persons.map((person) => (person.id === id ? data : person)));
       })
-      .catch((err) => console.error("Entró en el catch"));
+      .catch((err) => setError(err));
   };
   return (
     <div>
